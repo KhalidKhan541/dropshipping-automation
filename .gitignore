@@ -1,6 +1,9 @@
 node_modules/
 dist/
-.wrangler/
-.dev.vars
 .env
+.env.local
+.wrangler/
 *.log
+.DS_Store
+.vite/
+tsconfig.tsbuildinfo

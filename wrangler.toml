@@ -1,0 +1,49 @@
+name = "dropshipping-automation"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# D1 Database for orders, products, customers
+[[d1_databases]]
+binding = "DB"
+database_name = "dropshipping-db"
+database_id = "YOUR_D1_DATABASE_ID" # Replace after creating D1
+
+# KV for video queue and caching
+[[kv_namespaces]]
+binding = "KV"
+id = "YOUR_KV_NAMESPACE_ID" # Replace after creating KV
+
+# R2 for storing video files and media
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "dropshipping-media"
+
+# Workers AI for auto-replies
+[ai]
+binding = "AI"
+
+# Environment variables
+[vars]
+TIKTOK_CLIENT_KEY = ""
+TIKTOK_CLIENT_SECRET = ""
+TIKTOK_ACCESS_TOKEN = ""
+WHATSAPP_ACCESS_TOKEN = ""
+WHATSAPP_PHONE_NUMBER_ID = ""
+WHATSAPP_VERIFY_TOKEN = ""
+MARKAZ_API_KEY = ""
+BUSINESS_NAME = "PkGadgetHub"
+CURRENCY = "PKR"
+
+# TikTok Scheduler Worker
+[[services]]
+binding = "TIKTOK_SCHEDULER"
+service = "tiktok-scheduler"
+
+# Cron triggers for automated tasks
+[triggers]
+crons = [
+  "0 19 * * *",  # TikTok posting: 7 PM PKT daily
+  "0 8 * * *",   # Product research: 8 AM PKT daily
+  "0 */6 * * *"  # Order status check: every 6 hours
+]
